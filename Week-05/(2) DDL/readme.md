@@ -51,7 +51,7 @@ Bu komut, tablonun tuttuğu ilk 1000 satırı `SELECT * FROM ...` sorgusuyla get
 Bir tabloyu yarattıktan sonra **Design (Tasarım)** kısmından sütun ekleyip silebilirsiniz.  
 Ancak bazen SQL Server bunu engelleyebilir ve aşağıdaki hata çıkabilir:
 
-![alt text](error.jpg)
+![hata](./error.jpg)
 
 Bu hatayı çözmek için:
 
