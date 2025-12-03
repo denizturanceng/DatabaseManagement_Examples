@@ -34,7 +34,9 @@ Bu soruların cevapları **birden fazla tablonun birleşmesini gerektirir**.
 JOIN, iki veya daha fazla tabloyu, genellikle bir **birincil anahtar (PK)** ile bir **yabancı anahtar (FK)** arasındaki ilişkiye göre birleştirir.
 
 Örnek ilişki:
-Musteriler.MusteriID = Siparisler.MusteriID
+```sql 
+Musteriler.MusteriID = Siparisler.MusteriID 
+```
 
 Bu ilişki jüri gibi davranır:
 - “Bu müşteri ile bu sipariş eşleşiyor mu?”  
@@ -67,3 +69,86 @@ INNER JOIN Musteriler M
 ```
 ✔ Sadece sipariş veren müşteriler gelir.
 ✖ Sipariş vermemiş müşteriler listeye alınmaz.
+
+## 🧩 2. LEFT JOIN – “Sol tabloyu kayıpsız getir”
+
+### 📘 Mantık
+
+`LEFT JOIN`, sol tablodaki **tüm kayıtları kayıpsız şekilde** getirir.  
+Sağ tabloda eşleşen bir kayıt yoksa, sağ tablodan gelen sütunlar **NULL** olur.
+
+Bu nedenle LEFT JOIN, özellikle:
+
+- “Tüm sol tabloyu görmek ama sağdaki eşleşmeleri de eklemek istiyorum.”
+- “Eşleşmeyen kayıtları tespit etmek istiyorum.”
+- “Sipariş vermemiş müşteriler kim?” gibi analizlerde kullanılır.
+
+---
+
+### 🎓 Northwind Örneği
+
+```sql
+SELECT M.SirketAdi, S.SiparisID
+FROM Musteriler M
+LEFT JOIN Siparisler S
+    ON M.MusteriID = S.MusteriID;
+```
+
+
+✔ Tüm müşteriler listelenir.
+
+✔ Sipariş vermemiş müşteriler de görünür.
+
+✖ Sipariş vermemiş müşterilerde SiparisID = NULL olur.
+
+Bu nedenle LEFT JOIN, eksik eşleşmeleri tespit etmek için ideal bir birleşme türüdür.
+
+
+## 🧩 3. RIGHT JOIN – “Sağ tabloyu kayıpsız getir”
+
+### 📘 Mantık
+
+`RIGHT JOIN`, sağ tablodaki **tüm kayıtları eksiksiz** getirir.  
+Sol tarafta eşleşen bir kayıt yoksa, sol tablonun sütunları **NULL** olur.
+
+Bu JOIN türü, sağ tablonun tam olarak görünmesi istendiğinde kullanılır.  
+Pratikte çok tercih edilmez; aynı mantık genellikle LEFT JOIN ile soldan kurulabilir.
+
+---
+
+### 🎓 Northwind Örneği
+
+```sql
+SELECT S.SiparisID, M.SirketAdi
+FROM Siparisler S
+RIGHT JOIN Musteriler M
+    ON S.MusteriID = M.MusteriID;
+```
+
+✔ Sağ tablo (Musteriler) eksiksiz görünür.
+
+✖ Sol tabloda (Siparisler) karşılığı olmayan müşterilerde SiparisID = NULL döner.
+
+ℹ Uygulamada çoğu zaman RIGHT JOIN yerine LEFT JOIN tercih edilir.
+
+## 🧩 4. FULL JOIN – “Her iki tabloyu da kayıpsız getir”
+
+### 📘 Mantık
+
+`FULL JOIN`, hem sol hem de sağ tablodaki **tüm kayıtları eksiksiz** getirir.  
+Eşleşen kayıtlar birleştirilir, eşleşmeyen taraflar ise **NULL** ile tamamlanır.
+
+Bu JOIN türü, iki tablo arasındaki tüm veri farklarını görmek veya veri bütünlüğü analizi yapmak için idealdir.
+
+---
+
+### 🎓 Northwind Örneği
+
+```sql
+SELECT M.SirketAdi, S.SiparisID
+FROM Musteriler M
+FULL JOIN Siparisler S
+    ON M.MusteriID = S.MusteriID;
+```
+
+![hata](./tablo.png)
