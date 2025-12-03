@@ -93,7 +93,7 @@ SELECT TOP 10 * FROM Urunler;
 
 ---
 
-## 🧩 9️⃣ GROUP BY – Gruplama (Henüz göstermedim. 21.10.2025 tarihli derste anlatacağım. Fakat siz isterseniz önden öğrenebilirsiniz :D )
+## 🧩 9️⃣ GROUP BY – Gruplama 
 ```sql
 SELECT KategoriID, COUNT(*) AS UrunSayisi
 FROM Urunler
@@ -102,7 +102,7 @@ GROUP BY KategoriID;
 
 ---
 
-## 🔎 1️⃣0️⃣ HAVING – Gruplar Üzerinde Filtreleme (Henüz göstermedim. 21.10.2025 tarihli derste anlatacağım. Fakat siz isterseniz önden öğrenebilirsiniz :D )
+## 🔎 1️⃣0️⃣ HAVING – Gruplar Üzerinde Filtreleme 
 ```sql
 SELECT KategoriID, COUNT(*) AS UrunSayisi
 FROM Urunler
@@ -112,7 +112,7 @@ HAVING COUNT(*) > 5;
 
 ---
 
-## ✂️ 1️⃣1️⃣ STRING (Metin) Fonksiyonları (Derste dediğim gibi bu string fonksiyonlarını kurcalayıp öğrenebilirsiniz buradan :D )
+## ✂️ 1️⃣1️⃣ STRING (Metin) Fonksiyonları
 
 SQL Server’da metin (string) ifadeleri üzerinde işlem yapmak için kullanılan bazı temel fonksiyonlar aşağıdadır.  
 Örnekler Northwind veritabanı üzerinden verilmiştir.
@@ -137,7 +137,7 @@ SQL Server’da metin (string) ifadeleri üzerinde işlem yapmak için kullanıl
 
 ---
 
-## 📅 1️⃣2️⃣ DATE (Tarih) Fonksiyonları (Derste dediğim gibi bu date fonksiyonlarını kurcalayıp öğrenebilirsiniz buradan :D )
+## 📅 1️⃣2️⃣ DATE (Tarih) Fonksiyonları 
 
 
 Tarih ve saat verilerini analiz etmek için SQL Server’da birçok tarih fonksiyonu bulunur.
