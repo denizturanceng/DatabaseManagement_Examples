@@ -75,7 +75,8 @@ INNER JOIN Musteriler M
 ### 📘 Mantık
 
 `LEFT JOIN`, sol tablodaki **tüm kayıtları kayıpsız şekilde** getirir.  
-Sağ tabloda eşleşen bir kayıt yoksa, sağ tablodan gelen sütunlar **NULL** olur.
+Sağ tabloda eşleşen bir kayıt yoksa, sağ tablodan gelen sütunlar **NULL** olur. 
+Burada kısaca FROM'dan sonra gelen tabloya SOL, Join'den sonra gelen tabloya SAĞ tablo diyebiliriz.
 
 Bu nedenle LEFT JOIN, özellikle:
 
@@ -113,6 +114,7 @@ Sol tarafta eşleşen bir kayıt yoksa, sol tablonun sütunları **NULL** olur.
 
 Bu JOIN türü, sağ tablonun tam olarak görünmesi istendiğinde kullanılır.  
 Pratikte çok tercih edilmez; aynı mantık genellikle LEFT JOIN ile soldan kurulabilir.
+Burada kısaca FROM'dan sonra gelen tabloya SOL, Join'den sonra gelen tabloya SAĞ tablo diyebiliriz.
 
 ---
 
