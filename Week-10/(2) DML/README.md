@@ -10,49 +10,51 @@ Bu bölümde SQL Server üzerinde kullanılan temel DML yapıları ele alınmı�
 SQL Server’da değişken tanımlamak için **DECLARE**, değer atamak için **SET** kullanılır.
 
 ## 🧩 DECLARE – Değişken Tanımlama
-\`\`\`sql
+```sql
 DECLARE @yas INT;
 DECLARE @ad NVARCHAR(50);
 DECLARE @ortalama FLOAT;
-\`\`\`
+```
 
 ## 🧩 SET – Değer Atama
-\`\`\`sql
-SET @yas = 25;
-SET @ad = 'Deniz';
+```sql
+SET @yas = 15;
+SET @ad = 'Ahmet';
 SET @ortalama = 84.5;
-\`\`\`
+```
 
 ## ✔ Kullanım Senaryosu
-\`\`\`sql
+```sql
 DECLARE @altFiyat INT;
 SET @altFiyat = 50;
 
 SELECT * FROM Urunler
 WHERE BirimFiyati > @altFiyat;
-\`\`\`
+```
 Bu sorgu, bir değişkene bağlı dinamik filtreleme yapmaya olanak tanır.
 ---
 
 # ⭐ 2. SELECT INTO – Veriden Yeni Tablo Oluşturma
 
-`SELECT INTO`, sorgu sonucundan **yeni bir tablo oluşturur**.
+```sql 
+SELECT INTO
+```
+sorgu sonucundan **yeni bir tablo oluşturur**.
 
 ## 🧩 Tam tabloyu kopyalama
-\`\`\`sql
+```sql
 SELECT *
 INTO Urunler_Yedek
 FROM Urunler;
-\`\`\`
+```
 
 ## 🧩 Filtrelenmiş kopyalama
-\`\`\`sql
+```sql
 SELECT UrunAdi, BirimFiyati
 INTO PahaliUrunler
 FROM Urunler
 WHERE BirimFiyati > 100;
-\`\`\`
-
+```
 
 ---
 
@@ -63,28 +65,28 @@ INSERT komutu iki şekilde yazılabilir.
 ---
 
 ## 🧩 A) Tüm sütunlara sırayla ekleme
-\`\`\`sql
+```sql
 INSERT INTO Musteriler
 VALUES ('A101', 'ABC Market', 'İzmir', 'Türkiye');
-\`\`\`
+```
 
 ⚠ *VALUES sırası, tablodaki sütun sırasıyla birebir aynı olmalıdır.*
 
 ---
 
 ## 🧩 B) Sadece belirli sütunlara ekleme (Önerilen yöntem)
-\`\`\`sql
+```sql
 INSERT INTO Musteriler (MusteriID, SirketAdi, Sehir)
 VALUES ('A102', 'XYZ Ltd', 'Ankara');
-\`\`\`
+```
 
 ---
 
 ## 🧩 NULL Değeri Bırakabilme
-\`\`\`sql
+```sql
 INSERT INTO Musteriler (MusteriID, SirketAdi, Sehir, Ulke)
 VALUES ('A103', 'Tekno Bilgisayar', NULL, 'Türkiye');
-\`\`\`
+```
 
 ---
 
@@ -94,16 +96,16 @@ Veriyi değiştirmek için kullanılır.
 **Mutlaka WHERE kullanılmalıdır!**
 
 ## 🧩 Tek alan güncelleme
-\`\`\`sql
+```sql
 UPDATE Musteriler
 SET Sehir = 'İzmir'
 WHERE MusteriID = 'A102';
-\`\`\`
+```
 
 ## ⚠ WHERE yoksa tehlikelidir
-\`\`\`sql
+```sql
 UPDATE Urunler SET BirimFiyati = 10;
-\`\`\`
+```
 
 ---
 
@@ -112,15 +114,15 @@ UPDATE Urunler SET BirimFiyati = 10;
 DELETE, tablodan satır siler.
 
 ## 🧩 Satır silme
-\`\`\`sql
+```sql
 DELETE FROM Musteriler
 WHERE MusteriID = 'A103';
-\`\`\`
+```
 
 ## ⚠ WHERE yoksa tüm tablo silinir
-\`\`\`sql
+```sql
 DELETE FROM Siparisler;
-\`\`\`
+```
 
 ---
 
@@ -129,9 +131,9 @@ DELETE FROM Siparisler;
 TRUNCATE TABLE, bir tablodaki **tüm veriyi çok hızlı siler**.
 
 ## 🧩 Örnek
-\`\`\`sql
+```sql
 TRUNCATE TABLE SiparisDetaylari;
-\`\`\`
+```
 
 ## ✔ Özellikleri
 
