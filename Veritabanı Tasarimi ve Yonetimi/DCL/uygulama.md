@@ -282,7 +282,7 @@ GO
 
 ---
 
-## 12) Teslim Soruları (kısa)
+## 12) Üzerine konuşabileceğimiz sorular...
 1) Login var ama User yoksa ne olur?  
 2) `DENY` neden `db_datareader` rolünü “ezdi”?  
 3) `REVOKE` burada tam olarak neyi kaldırdı? “izin mi verdi” yoksa başka bir şey mi yaptı?  
