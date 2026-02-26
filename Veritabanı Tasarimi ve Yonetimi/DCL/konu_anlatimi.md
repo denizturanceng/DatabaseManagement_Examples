@@ -1,4 +1,4 @@
-# DCL (Data Control Language) — SQL Server’da Yetkilendirme (Kısa Konu Anlatımı)
+# DCL (Data Control Language) — SQL Server’da Yetkilendirme
 
 Bu bölüm **DCL** komutlarını (özellikle `GRANT / DENY / REVOKE`) ve bunların SQL Server’daki **LOGIN/USER/ROLE** yapısıyla ilişkisini hızlıca oturtmak içindir.
 
