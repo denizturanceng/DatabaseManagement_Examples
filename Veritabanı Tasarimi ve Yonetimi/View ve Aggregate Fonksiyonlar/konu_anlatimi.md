@@ -429,6 +429,8 @@ Bu fonksiyonlar çoğunlukla **GROUP BY** ile birlikte kullanılır.
 
 View ise:
 
-- SQL sorgularını veritabanında saklamayı sağlar
-- karmaşık sorguları basitleştirir
-- tablo gibi kullanılabilir.
+Karmaşıklığı Gizlemek (Basitleştirme): Birçok tablonun birleştiği (JOIN) veya karmaşık hesaplamaların yapıldığı uzun sorguları tek bir "sanal tabloya" dönüştürür. Yazılım ekibi uzun sorgular yazmak yerine sadece SELECT * FROM vw_OzetTablo diyerek veriyi kolayca çeker.
+
+Güvenlik ve Veri İzolasyonu: Kullanıcılara ana tablonun (örneğin tüm maaş listesinin) tamamına erişim vermek yerine, sadece görmeleri gereken satır ve sütunları içeren bir View veririz. Ana veriyi kilitler, sadece View'u dışa açarız.
+
+Yeniden Kullanılabilirlik (Reusability): Aynı uzun SQL sorgusunu projenin farklı yerlerinde tekrar tekrar yazmak yerine, veritabanında bir kez View olarak yaratır ve her yerden onu çağırırız. Merkezi bir yönetim sağlar ve kod tekrarını önler.
