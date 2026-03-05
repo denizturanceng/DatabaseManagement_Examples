@@ -213,40 +213,115 @@ Bu sorgu yalnızca 5'ten fazla sipariş veren müşterileri listeler.
 
 # 2. View
 
-View, veritabanında **saklanan bir SQL sorgusudur.**
+# View Neden Kullanılır?
+
+View konusunu anlamak için önce bir problem düşünelim.
+
+Bir şirketin veritabanında çalışan bilgilerini tutan bir tablo olduğunu düşünelim.
+
+| EmployeeID | Name   | Department | Salary |
+|------------|--------|-----------|--------|
+| 1          | Ali    | Sales     | 45000  |
+| 2          | Ayşe   | HR        | 52000  |
+| 3          | Mehmet | IT        | 60000  |
+| 4          | Zeynep | Sales     | 48000  |
+
+Bu tabloyu satış departmanındaki çalışanların da görebildiğini düşünelim.
+
+Ancak satış çalışanlarının **maaş bilgilerini görmesini istemiyoruz.**
+
+Eğer tabloyu doğrudan sorgularsak:
+
+```sql
+SELECT *
+FROM Employees
+```
+
+sonuç şu şekilde olacaktır:
+
+| EmployeeID | Name   | Department | Salary |
+|------------|--------|-----------|--------|
+| 1          | Ali    | Sales     | 45000  |
+| 2          | Ayşe   | HR        | 52000  |
+| 3          | Mehmet | IT        | 60000  |
+| 4          | Zeynep | Sales     | 48000  |
+
+Bu durumda maaş bilgileri de görünür.
+
+Bu her zaman istenen bir durum değildir.
+
+---
+
+# View ile Çözüm
+
+View kullanarak yalnızca görmek istediğimiz bilgileri içeren bir yapı oluşturabiliriz.
+
+```sql
+CREATE VIEW SalesEmployees
+AS
+SELECT EmployeeID, Name, Department
+FROM Employees
+WHERE Department = 'Sales'
+```
+
+Bu komut veritabanında bir **view oluşturur.**
+
+---
+
+# View Kullanımı
+
+View oluşturulduktan sonra tablo gibi sorgulanabilir.
+
+```sql
+SELECT *
+FROM SalesEmployees
+```
+
+Sonuç:
+
+| EmployeeID | Name   | Department |
+|------------|--------|-----------|
+| 1          | Ali    | Sales     |
+| 4          | Zeynep | Sales     |
+
+Görüldüğü gibi maaş bilgisi görünmemektedir.
+
+---
+
+# Önemli Nokta
+
+View aslında **veritabanında saklanan bir SELECT sorgusudur.**
 
 Başka bir deyişle:
 
-Bir sorguyu veritabanına kaydederiz ve daha sonra **tablo gibi kullanabiliriz.**
+View = Kaydedilmiş SELECT sorgusu
 
-View'ler fiziksel olarak veri tutmazlar.  
-Sadece içinde yazılan sorgunun sonucunu gösterirler.
+Örneğin şu sorguyu düşünelim:
 
----
+```sql
+SELECT CustomerID, COUNT(OrderID)
+FROM Orders
+GROUP BY CustomerID
+```
 
-# View Kullanma Amaçları
+Bu sorguyu sürekli yazmak yerine bir View olarak kaydedebiliriz.
 
-View'ler şu durumlarda kullanılır:
+```sql
+CREATE VIEW CustomerOrderSummary
+AS
+SELECT CustomerID, COUNT(OrderID)
+FROM Orders
+GROUP BY CustomerID
+```
 
-### Karmaşık sorguları basitleştirmek
+Daha sonra sadece şu sorguyu yazmamız yeterlidir:
 
-Bazı sorgular çok fazla JOIN içerebilir ve oldukça uzun olabilir.  
-Bu sorguları tekrar tekrar yazmak yerine bir View içine koyabiliriz.
+```sql
+SELECT *
+FROM CustomerOrderSummary
+```
 
----
-
-### Güvenlik sağlamak
-
-Bazen bir tablonun tüm kolonlarını kullanıcıya göstermek istemeyebiliriz.  
-View kullanarak yalnızca belirli kolonları gösterebiliriz.
-
----
-
-### Tekrar kullanılabilir sorgular oluşturmak
-
-Sık kullanılan rapor sorguları View olarak kaydedilebilir.
-
----
+Bu sayede karmaşık sorguları tekrar tekrar yazmak zorunda kalmayız.
 
 # View Oluşturma
 
